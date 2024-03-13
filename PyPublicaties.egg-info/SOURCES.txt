@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+setup.py
+PyPublicaties/__init__.py
+PyPublicaties/client.py
+PyPublicaties/structure.py
+PyPublicaties/webservice.py
+PyPublicaties.egg-info/PKG-INFO
+PyPublicaties.egg-info/SOURCES.txt
+PyPublicaties.egg-info/dependency_links.txt
+PyPublicaties.egg-info/requires.txt
+PyPublicaties.egg-info/top_level.txt
+tests/test_myfunctions.py
