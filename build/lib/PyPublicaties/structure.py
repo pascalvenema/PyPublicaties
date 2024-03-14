@@ -129,8 +129,9 @@ class OfficielePublicatie:
                 continue
 
             if child.attrib:
-                value_dict = child.attrib
-                value_dict['value'] = child.text.strip() if child.text else ""
+                key, value = list(child.attrib.items())[0]
+                value_dict = {value: child.text.strip() if child.text else ""}
+                # value_dict['value'] = child.text.strip() if child.text else ""
                 op.__dict__[tag].append(value_dict)
             else:
                 op.__dict__[tag].append(child.text.strip() if child.text else "")

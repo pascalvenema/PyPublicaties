@@ -24,10 +24,3 @@ def retreive_publications(query_dict = {}, max_records = 10, start_record = 1):
             ops.append(ob)
             
     return ops
-    
-    
-query_dict = {
-    'w.subrubriek': 'Stemmingen'
-}
-
-publications = retreive_publications(query_dict=query_dict, max_records=100, start_record=1)
