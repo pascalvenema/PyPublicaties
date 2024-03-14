@@ -1,5 +1,3 @@
-import xml.etree.ElementTree as ET
-
 class OfficielePublicatie:
     def __init__(self):
         self.identifier = []
@@ -119,29 +117,6 @@ class OfficielePublicatie:
         self.itemUrl = []
         self.timestamp = []
         
-    @classmethod
-    def from_xml_element(cls, element: ET.Element, namespaces: dict) -> 'OfficielePublicatie':
-        op = cls()
-        for child in element.findall('.//*', namespaces):
-            tag = cls.parse_namespaced_tag(child.tag)
-
-            if tag not in op.__dict__:
-                continue
-
-            if child.attrib:
-                key, value = list(child.attrib.items())[0]
-                value_dict = {value: child.text.strip() if child.text else ""}
-                # value_dict['value'] = child.text.strip() if child.text else ""
-                op.__dict__[tag].append(value_dict)
-            else:
-                op.__dict__[tag].append(child.text.strip() if child.text else "")
-
-        return op
-
-    @staticmethod
-    def parse_namespaced_tag(tag: str) -> str:
-        return tag.split('}', 1)[-1] if '}' in tag else tag
-
     def __iter__(self):
         for key in self.__dict__:
             yield {key: getattr(self, key)}

@@ -1,26 +1,39 @@
-from .structure import OfficielePublicatie
-from .webservice import ontsluit_handelingen
+from sru import retrieve_ops_sru
+from sftp import retrieve_ops_sftp
 
-def retrieve_publications(query_list = [], max_records = 10, start_record = 1):
-    query_concatter = ' AND '
-    query_part2 = ''
-    for value in query_list:
-        query_part2 += f"{query_concatter}{value}"
-    
-    root = ontsluit_handelingen(query_part2, start_record, max_records)
-    
-    namespaces = {
-    'sru': "http://docs.oasis-open.org/ns/search-ws/sruResponse",
-    'gzd': "http://standaarden.overheid.nl/sru"
-    }
+# STEP 1: Get ElementTrees
+# For SRU 2.0: one big XML with all records.
+# For SFTP: each record is a folder, with 'identifier' as folder name. Each folder contains: {identifier}.html.zip, {identifier}.odt, {identifier}.pdf, {identifier}.xml, metadata_owms.xml, metadata.xml
+
+# STEP 2:
+
+def retrieve_obs(method = 'sru', queryList = [], limit = 10, startRecord = 1):
+    # Query is a list in a list
+    # For example:
+    # [
+    #     ['title', '=', 'Wet op de Ruimtelijke Ordening'],
+    #     ['date', '>', '2020-01-01']
+    # ]
     
     ops = []
-    # Loop door iedere record in de records container
-    for record in root.findall('.//sru:records/sru:record', namespaces):
-        # Genest in <sru:recordData>
-        record_data = record.find('.//sru:recordData', namespaces)
-        if record_data is not None:
-            ob = OfficielePublicatie.from_xml_element(record_data, namespaces)
-            ops.append(ob)
-            
+
+
+    if method=="sru":        
+        ops = retrieve_ops_sru(queryList=queryList, maximumRecords=limit, startRecord=startRecord)
+        number_of_results = retrieve_number_of_results_sru(queryList=queryList)
+    
+    elif method=="sftp":
+        ops = retrieve_ops_sftp(queryList=queryList)
+    
+    
     return ops
+
+
+queryList = [
+    ['dcterms:identifier', '=', 'h-tk-20142015-13-14'],
+    ['overheidwetgeving:subrubriek', '=', 'Stemmingen']
+]
+
+ops = retrieve_obs(queryList=queryList)
+
+print(ops)
