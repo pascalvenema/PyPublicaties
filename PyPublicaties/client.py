@@ -1,11 +1,11 @@
 from .structure import OfficielePublicatie
 from .webservice import ontsluit_handelingen
 
-def retreive_publications(query_dict = {}, max_records = 10, start_record = 1):
+def retreive_publications(query_list = [], max_records = 10, start_record = 1):
     query_concatter = ' AND '
     query_part2 = ''
-    for key, value in query_dict.items():
-        query_part2 += f"{query_concatter}{key}={value}"
+    for value in query_list:
+        query_part2 += f"{query_concatter}{value}"
     
     root = ontsluit_handelingen(query_part2, start_record, max_records)
     

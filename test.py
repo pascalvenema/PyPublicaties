@@ -1,5 +1,10 @@
 import PyPublicaties as pp
 
-pubs=pp.retreive_publications(query_dict={'w.subrubriek': 'Stemmingen'}, max_records=1)
+query_list = [
+    'w.subrubriek=Stemmingen',
+    'dt.identifier=h-tk-20192020-46-12'
+]
 
-print(pubs[0].itemUrl[4])
+pubs=pp.retreive_publications(query_list=query_list,max_records=1)
+
+print(pubs[0].title[0])
