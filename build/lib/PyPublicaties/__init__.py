@@ -1,2 +1,2 @@
-from .client import retreive_publications
+from .client import retrieve_publications
 

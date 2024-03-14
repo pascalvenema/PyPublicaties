@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: PyPublicaties
-Version: 0.2.2
+Version: 0.2.3
 Summary: A Python library which can be used to interact with the Dutch government's publication repository.
 Author: Pascal Venema
 Description-Content-Type: text/markdown
