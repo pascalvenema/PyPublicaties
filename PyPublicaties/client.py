@@ -1,7 +1,7 @@
 from .structure import OfficielePublicatie
 from .webservice import ontsluit_handelingen
 
-def retreive_publications(query_list = [], max_records = 10, start_record = 1):
+def retrieve_publications(query_list = [], max_records = 10, start_record = 1):
     query_concatter = ' AND '
     query_part2 = ''
     for value in query_list:
