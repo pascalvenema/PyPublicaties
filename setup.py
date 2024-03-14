@@ -6,7 +6,7 @@ with open('README.md') as f:
 setup(
     name='PyPublicaties',
     packages=find_packages(include=['PyPublicaties']),
-    version='0.2.1',
+    version='0.2.2',
     description='A Python library which can be used to interact with the Dutch government\'s publication repository.',
     author='Pascal Venema',
     install_requires=['requests'],
