@@ -50,7 +50,7 @@ For consistency, every variable of the object is returned as a list since some v
 
 ## Documentation
 
-For more detailed information on all the capabilities, documentation will be made available in a later stadium.
+For more detailed information on all the capabilities, documentation will be made available at a later stage.
 
 ## Contributing
 
